@@ -9,13 +9,17 @@ import ProfileButton from '../Navigation/ProfileButton';
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const spots = useSelector(state => state.spots.list);
+  const spots = Object.values(useSelector(state => state.spots));
   console.log(spots);
   const sessionUser = useSelector(state => state.session.user);
 
   useEffect(  ()  => async () => {
     await dispatch(getSpots());
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   dispatch(getSpots());
+  // }, [dispatch]);
 
   return (
     <div className="home-page">
@@ -24,9 +28,9 @@ const HomePage = () => {
         <div className="home-page__content__spots">
           <h2>Spots</h2>
           <ul>
-            {spots?.map(spot => (
+            {spots?.map((spot, i) => (
               <li key={spot.id}>
-                <NavLink to={`/spots/${spot.id}`}>{spot.id}</NavLink>
+                <NavLink key={spot.id} to={`/spots/${spot.id}`}>Link to {spot?.name}</NavLink>
               </li>
             ))}
           </ul>

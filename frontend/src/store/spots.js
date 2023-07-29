@@ -32,15 +32,11 @@ const sortList = (list) => {
 const spotsReducer = (state = {}, action) => {
   switch (action.type) {
     case LOAD_SPOTS: {
-      const allSpots = {};
+      const allSpots = {...state};
       action.spots.forEach(spot => {
         allSpots[spot.id] = spot;
       });
-      return {
-        ...state,
-        ...allSpots,
-        list: sortList(Object.values(allSpots))
-      };
+      return allSpots;
     }
     default:
       return state;
