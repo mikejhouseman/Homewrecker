@@ -30,7 +30,7 @@ const HomePage = () => {
           <ul>
             {spots?.map((spot, i) => (
               <li key={spot.id}>
-                <NavLink key={spot.id} to={`/spots/${spot.id}`}>Link to {spot?.name}</NavLink>
+                <NavLink key={spot.id} to={`/spots/${spot.id}`}>{spot?.name}</NavLink>
               </li>
             ))}
           </ul>
