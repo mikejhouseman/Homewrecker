@@ -27,6 +27,7 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <Navigation isLoaded={true} />
+      <h1 className="home-page__title">Welcome to Homewrecker</h1>
       <div className="home-page__content">
         <div className="home-page__content__spots">
           <h2>Spots</h2>
@@ -36,7 +37,7 @@ const HomePage = () => {
                 <Link to={`/spots/${spot.id}`} className="spot-link">
                   <img src={spot.previewImage} alt={spot.previewImage} className="spot-image" />
                   <span className="spot-name">{spot.name}</span>
-                  <span className="spot-location">{spot.city}, {spot.state}, ${spot.price}</span>
+                  <span className="spot-location">{spot.city}, {spot.state}, ${spot.price}, {spot.avgStarRating}</span>
                 </Link>
               </li>
             ))}

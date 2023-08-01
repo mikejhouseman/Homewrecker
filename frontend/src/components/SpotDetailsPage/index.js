@@ -1,51 +1,69 @@
-// frontend/src/components/SpotDetails/index.js
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { getSpots } from '../../store/spots';
-import './SpotDetailsPage.css';
-import Navigation from '../Navigation';
-import ProfileButton from '../Navigation/ProfileButton';
-import AddSpotModal from '../AddSpotModal';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import * as spotActions from "../../store/spots";
+import { useModal } from "../../context/Modal";
+import "./SpotDetailsPage.css";
+import AddReviewForm from "../AddReviewForm";
+import GetAllReviews from "../GetAllReviews";
+import EditSpotModal from "../EditSpotModal";
+import DeleteSpotButton from "../DeleteSpotButton";
+import DeleteReviewButton from "../DeleteReviewButton"; // Import the DeleteReviewButton component
 
-
-
-const  SpotDetailsPage = () => {
+const SpotDetailsPage = () => {
   const dispatch = useDispatch();
-  const spots = Object.values(useSelector(state => state.spots));
-  const sessionUser = useSelector(state => state.session.user);
-  const [showAddSpotModal, setShowAddSpotModal] = useState(false);
+  const { spotId } = useParams();
+  const spot = useSelector((state) => state.spots[spotId]);
+  const { showModal, setShowModal } = useModal();
+  const userId = useSelector((state) => state.auth.user?.id);
 
   useEffect(() => {
-    dispatch(getSpots());
-  }, [dispatch]);
+    dispatch(spotActions.getSpotDetails(spotId));
+  }, [dispatch, spotId]);
 
-  const toggleAddSpotModal = () => {
-    setShowAddSpotModal((prevState) => !prevState);
+  if (!spot) {
+    return <div>Spot not found.</div>;
+  }
+
+  const handleEditSpot = () => {
+    setShowModal(true);
   };
 
   return (
-    <div className="home-page">
-      <Navigation isLoaded={true} />
-      <div className="home-page__content">
-        <div className="home-page__content__spots">
-          <h2>Spots</h2>
-          <ul className="spot-list">
-            {spots?.map((spot, i) => (
-              <li key={spot.id} className="spot-tile">
-                <Link to={`/spots/${spot.id}`} className="spot-link">
-                  <img src={spot.previewImage} alt={spot.previewImage} className="spot-image" />
-                  <span className="spot-name">{spot.name}</span>
-                  <span className="spot-location">{spot.city}, {spot.state}, ${spot.price}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <button onClick={toggleAddSpotModal}>Add Spot</button>
-        {showAddSpotModal && <AddSpotModal />}
+    <div className="spot-details-container">
+      <div className="spot-details">
+        <h1>{spot.name}</h1>
+        <p>{spot.description}</p>
+        <p>Price: {spot.price}</p>
+        <p>Average Rating: {spot.avgStarRating}</p>
+        <p>Number of Reviews: {spot.numReviews}</p>
+        <div className="spot-images">
+          {spot.SpotImages.map((image) => (
+            <img
+              key={image.id}
+              src={image.url}
+              alt={`Spot ${spot.name} preview`}
+            />
+          ))}
+        </div>
       </div>
+      <div className="edit-delete-buttons">
+        <button onClick={handleEditSpot}>Edit Spot</button>
+        <DeleteSpotButton spotId={spotId} ownerId={spot.userId} userId={userId} />
       </div>
-      {sessionUser && <ProfileButton key={sessionUser.id} />}
+      <div className="add-review">
+        <AddReviewForm spotId={spotId} />
+      </div>
+      <div className="all-reviews">
+        <GetAllReviews spotId={spotId} />
+      </div>
+      {showModal && <EditSpotModal spot={spot} />}
+      {/* Render DeleteReviewButton for each review */}
+      {spot.Reviews.map((review) => (
+        <div key={review.id} className="delete-review-button">
+          <DeleteReviewButton reviewId={review.id} />
+        </div>
+      ))}
     </div>
   );
 };

@@ -1,68 +1,17 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from 'react-redux';
-import * as spotActions from '../../store/spots';
-import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
-import AddSpotModal from ".";
+import React from "react";
+import { useModal } from "../../context/Modal";
 
-function CancelButton({ user }) {
-  const dispatch = useDispatch();
-  const [showMenu, setShowMenu] = useState(false);
-  const ulRef = useRef();
+function CancelButton() {
+  const { closeModal } = useModal();
 
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
+  const handleCancel = () => {
+    closeModal();
   };
 
-  useEffect(() => {
-    if (!showMenu) return;
-
-    const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
-        setShowMenu(false);
-      }
-    };
-
-    document.addEventListener('click', closeMenu);
-
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
-
-  const closeMenu = () => setShowMenu(false);
-
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-
   return (
-    <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
-      <ul className={ulClassName} ref={ulRef}>
-        {user ? (
-          <>
-            <li>{user.username}</li>
-            <li>{user.firstName} {user.lastName}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={logout}>Log Out</button>
-            </li>
-          </>
-        ) : (
-          <>
-            <OpenModalMenuItem
-              itemText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-            <OpenModalMenuItem
-              itemText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-          </>
-        )}
-      </ul>
-    </>
+    <button onClick={handleCancel}>
+      Cancel
+    </button>
   );
 }
 

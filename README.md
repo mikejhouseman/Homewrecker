@@ -1,4 +1,5 @@
 # `Homewrecker`
+![Homewrecker Logo](/homewreckerLogo.png)
 https://homewrecker.onrender.com
 ## Database Schema Design
 
