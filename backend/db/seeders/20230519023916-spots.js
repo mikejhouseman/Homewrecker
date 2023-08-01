@@ -21,7 +21,7 @@ module.exports = {
         name: 'Shoddy Apartment',
         description: 'Includes the printer from Office Space',
         price: 100.00,
-        previewImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.upp-prod-eu.s3.amazonaws.com%2F5ecccf40-b7e5-11e9-96bd-8e884d3ea203?dpr=1&fit=scale-down&source=next&width=700'
+        previewImage: 'https://c1.wallpaperflare.com/preview/784/104/992/apartment-building-highrise-poor-balconies-tower-architecture.jpg'
       },
       {
         userId: 2,
@@ -35,7 +35,7 @@ module.exports = {
         description: 'A luxurious house with multiple china cabinets. \
         Great for Greek wedding parties and throwing stones in!',
         price: 500.00,
-        previewImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.upp-prod-eu.s3.amazonaws.com%2F5ecccf40-b7e5-11e9-96bd-8e884d3ea203?dpr=1&fit=scale-down&source=next&width=700'
+        previewImage: 'https://cdn.pixabay.com/photo/2017/09/28/16/44/glass-house-2796146_1280.jpg'
       },
       {
         userId: 3,
@@ -48,7 +48,7 @@ module.exports = {
         name: 'House of Cards',
         description: 'Sleep on the ground floor!',
         price: 200.00,
-        previewImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.upp-prod-eu.s3.amazonaws.com%2F5ecccf40-b7e5-11e9-96bd-8e884d3ea203?dpr=1&fit=scale-down&source=next&width=700'
+        previewImage: 'https://c1.wallpaperflare.com/preview/926/405/240/house-of-cards-fragile-patience-sensitive.jpg'
       },
       {
         userId: 4,
@@ -61,7 +61,7 @@ module.exports = {
         name: 'Leaning Tower',
         description: 'Tower? Hardly knew her!',
         price: 150.00,
-        previewImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.upp-prod-eu.s3.amazonaws.com%2F5ecccf40-b7e5-11e9-96bd-8e884d3ea203?dpr=1&fit=scale-down&source=next&width=700'
+        previewImage: 'https://media.istockphoto.com/id/1289575928/photo/thatched-house.jpg?s=612x612&w=0&k=20&c=uD33asItIOqDklLAZbIWmTHvV8pkHYNTj-1cjU9DHFM='
       },
       {
         userId: 5,
@@ -74,20 +74,20 @@ module.exports = {
         name: 'Balsa Wood Hovel',
         description: 'Great for punching holes into walls',
         price: 300.00,
-        previewImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.upp-prod-eu.s3.amazonaws.com%2F5ecccf40-b7e5-11e9-96bd-8e884d3ea203?dpr=1&fit=scale-down&source=next&width=700'
+        previewImage: 'https://2.bp.blogspot.com/-uYSl0n9wos4/WwvU92jA-dI/AAAAAAAAFEQ/31NDqMMYEfgyX-5L2mvjF3E1SEGeTcEygCEwYBhgL/s1600/vanga04.jpg'
       },
       {
         userId: 6,
         address: '321 Maple St',
-        city: 'London',
-        state: null,
-        country: 'United Kingdom',
+        city: 'Denver',
+        state: 'CO',
+        country: 'United States',
         lat: 47.6062,
         lng: -122.3321,
         name: 'Thin Walls Apartment',
         description: 'A cozy apartment with walls thinner than prosciutto',
         price: 120.00,
-        previewImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fcom.ft.imagepublish.upp-prod-eu.s3.amazonaws.com%2F5ecccf40-b7e5-11e9-96bd-8e884d3ea203?dpr=1&fit=scale-down&source=next&width=700'
+        previewImage: 'https://i.pinimg.com/originals/ca/ab/7c/caab7c67150b36c45359834c41e3f5e7.jpg'
       }
   ], {});
     /**
