@@ -1,12 +1,10 @@
-// frontend/src/components/Navigation/ProfileButton.js
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from 'react-redux';
-import * as sessionActions from '../../store/session';
-import OpenModalMenuItem from './OpenModalMenuItem';
-import LoginFormModal from '../LoginFormModal';
-import SignupFormModal from '../SignupFormModal';
+import * as spotActions from '../../store/spots';
+import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
+import AddSpotModal from ".";
 
-function ProfileButton({ user }) {
+function CancelButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
@@ -31,12 +29,6 @@ function ProfileButton({ user }) {
   }, [showMenu]);
 
   const closeMenu = () => setShowMenu(false);
-
-  const logout = (e) => {
-    e.preventDefault();
-    dispatch(sessionActions.logout());
-    closeMenu();
-  };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
@@ -74,4 +66,4 @@ function ProfileButton({ user }) {
   );
 }
 
-export default ProfileButton;
+export default CancelButton;

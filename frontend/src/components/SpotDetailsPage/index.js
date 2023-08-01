@@ -1,27 +1,51 @@
-/* // frontend/src/components/SpotDetails/index.js */
-import React from 'react';
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+// frontend/src/components/SpotDetails/index.js
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { getSpots } from '../../store/spots';
+import './SpotDetailsPage.css';
+import Navigation from '../Navigation';
+import ProfileButton from '../Navigation/ProfileButton';
+import AddSpotModal from '../AddSpotModal';
 
-const SpotDetailsPage = () => {
-  const { spotId } = useParams();
-  const spot = useSelector((state) => state.spots[spotId]);
 
-  if (!spot) {
-    return <div>Spot not found.</div>;
-  }
+
+const  SpotDetailsPage = () => {
+  const dispatch = useDispatch();
+  const spots = Object.values(useSelector(state => state.spots));
+  const sessionUser = useSelector(state => state.session.user);
+  const [showAddSpotModal, setShowAddSpotModal] = useState(false);
+
+  useEffect(() => {
+    dispatch(getSpots());
+  }, [dispatch]);
+
+  const toggleAddSpotModal = () => {
+    setShowAddSpotModal((prevState) => !prevState);
+  };
 
   return (
-    <div>
-      <h2>{spot.name}</h2>
-      <div>
-        {/* Render the spot details here */}
-        {/* For example: */}
-        <p>City: {spot.city}</p>
-        <p>State: {spot.state}</p>
-        <p>Price: ${spot.price}</p>
-        {/* Add more spot details as needed */}
+    <div className="home-page">
+      <Navigation isLoaded={true} />
+      <div className="home-page__content">
+        <div className="home-page__content__spots">
+          <h2>Spots</h2>
+          <ul className="spot-list">
+            {spots?.map((spot, i) => (
+              <li key={spot.id} className="spot-tile">
+                <Link to={`/spots/${spot.id}`} className="spot-link">
+                  <img src={spot.previewImage} alt={spot.previewImage} className="spot-image" />
+                  <span className="spot-name">{spot.name}</span>
+                  <span className="spot-location">{spot.city}, {spot.state}, ${spot.price}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <button onClick={toggleAddSpotModal}>Add Spot</button>
+        {showAddSpotModal && <AddSpotModal />}
       </div>
+      </div>
+      {sessionUser && <ProfileButton key={sessionUser.id} />}
     </div>
   );
 };

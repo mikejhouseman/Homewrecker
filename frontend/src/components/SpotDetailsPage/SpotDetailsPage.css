@@ -1,0 +1,52 @@
+/* frontend/src/components/SpotDetailsPage.css */
+/* Style the spot details container */
+.spot-details-container {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the spot name */
+.spot-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Style the spot image */
+.spot-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+/* Style the spot location and price */
+.spot-location-price {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+/* Style the spot description */
+.spot-description {
+  margin-bottom: 20px;
+}
+
+/* Style the "Back to Home" link */
+.back-to-home-link {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.back-to-home-link:hover {
+  text-decoration: underline;
+}

@@ -1,7 +1,7 @@
 // frontend/src/components/HomePage/index.js
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getSpots } from '../../store/spots';
 import './HomePage.css';
 import Navigation from '../Navigation';
@@ -33,11 +33,11 @@ const HomePage = () => {
           <ul className="spot-list">
             {spots?.map((spot, i) => (
               <li key={spot.id} className="spot-tile">
-                <NavLink to={`/spots/${spot.id}`} className="spot-link">
+                <Link to={`/spots/${spot.id}`} className="spot-link">
                   <img src={spot.previewImage} alt={spot.previewImage} className="spot-image" />
                   <span className="spot-name">{spot.name}</span>
                   <span className="spot-location">{spot.city}, {spot.state}, ${spot.price}</span>
-                </NavLink>
+                </Link>
               </li>
             ))}
           </ul>
