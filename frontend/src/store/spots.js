@@ -110,7 +110,8 @@ export const deleteExistingSpot = (spotId) => async (dispatch) => {
 };
 
 const initialState = {
-  list: [],
+  list: {},
+  users: {},
 };
 
 
@@ -124,9 +125,9 @@ const spotsReducer = (state = initialState, action) => {
       return allSpots;
     }
     case SPOT_DETAILS: {
-      const spotDetails = { ...state };
-      spotDetails[action.payload.id] = action.payload;
-      return spotDetails;
+      const newState = { ...state };
+      newState.list[action.spot.id] = action.spot;
+      newState.users[action.spot.Owner.id] = action.spot.Owner;
     }
     case ADD_SPOT: {
       const newState = { ...state };

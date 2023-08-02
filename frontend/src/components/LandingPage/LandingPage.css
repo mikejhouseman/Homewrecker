@@ -3,25 +3,25 @@
   max-width: 1600px;
   margin: 0 auto;
   padding: 20px;
-  background-color: rgb(172, 172, 172);
 }
 
 .landing-page__header {
   display: flex;
   align-items: center;
   padding: 10px;
-  background-color: #f0f0f0;
 }
 
-.logo {
-  width: 50px;
-  height: 50px;
+.landing-page__logo {
   margin-right: 10px;
+}
+
+.landing-page__title {
+  font-size: 28px;
+  margin-bottom: 20px;
 }
 
 .landing-page__content {
   margin-top: 20px;
-  overflow: auto;
 }
 
 .landing-page__content__spots h2 {
@@ -29,7 +29,7 @@
   margin-bottom: 10px;
 }
 
-.spot-list {
+.landing-page__spot-list {
   list-style: none;
   padding: 10px;
   display: grid;
@@ -39,7 +39,7 @@
   align-items: start;
 }
 
-.spot-tile {
+.landing-page__spot-tile {
   cursor: pointer;
   background-color: #fff;
   padding: 16px;
@@ -47,37 +47,37 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.spot-tile:hover {
+.landing-page__spot-tile:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.spot-link {
+.landing-page__spot-link {
   display: block;
   text-decoration: none;
   color: #007bff;
   position: relative;
 }
 
-.spot-image {
+.landing-page__spot-image {
   width: 100%;
   height: auto;
   border-radius: 4px;
 }
 
-.spot-name {
+.landing-page__spot-name {
   display: block;
   font-size: 18px;
   margin-top: 8px;
 }
 
-.spot-location {
+.landing-page__spot-location {
   display: block;
   font-size: 14px;
   color: #555;
 }
 
 /* Tooltip */
-.spot-link::before {
+.landing-page__spot-link::before {
   content: attr(data-tooltip);
   position: absolute;
   bottom: -25px;
@@ -94,25 +94,25 @@
   transition: opacity 0.2s ease;
 }
 
-.spot-link:hover::before {
+.landing-page__spot-link:hover::before {
   opacity: 1;
 }
 
 /* Adjust the number of columns for smaller screen sizes */
 @media (max-width: 1200px) {
-  .spot-list {
+  .landing-page__spot-list {
     grid-template-columns: repeat(3, minmax(200px, 1fr));
   }
 }
 
 @media (max-width: 900px) {
-  .spot-list {
+  .landing-page__spot-list {
     grid-template-columns: repeat(2, minmax(200px, 1fr));
   }
 }
 
 @media (max-width: 600px) {
-  .spot-list {
+  .landing-page__spot-list {
     grid-template-columns: repeat(1, minmax(200px, 1fr));
   }
 }
