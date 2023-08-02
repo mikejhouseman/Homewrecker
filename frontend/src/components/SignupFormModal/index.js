@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+// frontend/src/components/SignupFormModal/index.js
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as sessionActions from "../../store/session";
@@ -15,31 +16,47 @@ function SignupFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    setErrors({});
+  }, [closeModal]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password === confirmPassword) {
-      setErrors({});
-      return dispatch(
-        sessionActions.signup({
-          email,
-          username,
-          firstName,
-          lastName,
-          password,
-        })
-      )
-        .then(closeModal)
-        .catch(async (res) => {
-          const data = await res.json();
-          if (data && data.errors) {
-            setErrors(data.errors);
-          }
-        });
+    if (password !== confirmPassword) {
+      setErrors({
+        confirmPassword: "Confirm Password field must be the same as the Password field",
+      });
+    } else {
+      try {
+        setErrors({});
+        await dispatch(
+          sessionActions.signup({
+            email,
+            username,
+            firstName,
+            lastName,
+            password,
+          })
+        );
+        closeModal();
+      } catch (res) {
+        const data = await res.json();
+        if (data && data.errors) {
+          setErrors(data.errors);
+        }
+      }
     }
-    return setErrors({
-      confirmPassword: "Confirm Password field must be the same as the Password field"
-    });
   };
+
+  const isButtonDisabled =
+    !email ||
+    !username ||
+    !firstName ||
+    !lastName ||
+    !password ||
+    !confirmPassword ||
+    password.length < 6 ||
+    username.length < 4;
 
   return (
     <>
@@ -104,10 +121,10 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.confirmPassword && (
-          <p>{errors.confirmPassword}</p>
-        )}
-        <button type="submit">Sign Up</button>
+        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+        <button type="submit" disabled={isButtonDisabled}>
+          Sign Up
+        </button>
       </form>
     </>
   );

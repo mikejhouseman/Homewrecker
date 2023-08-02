@@ -13,6 +13,7 @@ import homewreckerLogo from './homewreckerLogo.png';
 import SpotModal from '../SpotModal';
 import * as spotActions from '../../store/spots';
 
+
 const LandingPage = () => {
   const dispatch = useDispatch();
   const spots = useSelector(state => state.spots);

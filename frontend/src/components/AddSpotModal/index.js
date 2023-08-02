@@ -62,6 +62,7 @@ function AddSpotModal() {
       name,
       description,
       price,
+      ownerId: user.id, 
     };
 
     try {
@@ -85,8 +86,9 @@ function AddSpotModal() {
     }
   };
 
-  if (!user) {
-    // If the user is not logged in, redirect to the login page
+  const spotOwnerId = useSelector((state) => state.spots.spotOwnerId);
+
+  if (!user || (spotOwnerId && spotOwnerId !== user.id)) {
     return <Redirect to="/login" />;
   }
 

@@ -36,8 +36,8 @@ export const getSpots = () => async (dispatch) => {
     if (!response.ok) {
       throw new Error('Failed to fetch spots from the server.');
     }
-    const { Spots } = await response.json(); // Update to extract the 'Spots' property
-    await dispatch(loadSpots(Spots)); // Use the extracted 'Spots' array
+    const { Spots } = await response.json();
+    await dispatch(loadSpots(Spots)); 
   } catch (error) {
     console.error('Error fetching spots:', error);
   }
@@ -63,7 +63,7 @@ export const addNewSpot = (spot) => async (dispatch) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(spot),
+      body: JSON.stringify({ ...spot, userId: spot.ownerId }),
     });
     if (!res.ok) {
       throw new Error('Failed to add spot to the server.');
