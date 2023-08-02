@@ -3,14 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getSpots } from '../../store/spots';
-import './HomePage.css';
+import './LandingPage.css';
 import Navigation from '../Navigation';
 import ProfileButton from '../Navigation/ProfileButton';
 import AddSpotModal from '../AddSpotModal';
 
 
 
-const HomePage = () => {
+const LandingPage = () => {
   const dispatch = useDispatch();
   const spots = Object.values(useSelector(state => state.spots));
   const sessionUser = useSelector(state => state.session.user);
@@ -51,4 +51,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default LandingPage;

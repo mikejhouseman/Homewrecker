@@ -1,5 +1,5 @@
-/* frontend/src/components/HomePage/HomePage.css */
-/* frontend/src/components/HomePage/HomePage.css */
+
+/* frontend/src/components/LandingPage/LandingPage.css */
 .home-page {
   max-width: 1600px;
   margin: 0 auto;
@@ -15,7 +15,7 @@
 }
 
 .logo {
-  width: 50px; 
+  width: 50px;
   height: 50px;
   margin-right: 10px;
 }
