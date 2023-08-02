@@ -128,20 +128,21 @@ const spotsReducer = (state = initialState, action) => {
       const newState = { ...state };
       newState.list[action.spot.id] = action.spot;
       newState.users[action.spot.Owner.id] = action.spot.Owner;
+      return newState; // Return the updated state
     }
     case ADD_SPOT: {
       const newState = { ...state };
-      newState[action.spot.id] = action.spot;
-      return newState;
-    };
+      newState.list[action.spot.id] = action.spot;
+      return newState; // Return the updated state
+    }
     case EDIT_SPOT: {
       const newState = { ...state };
-      newState[action.spot.id] = action.spot;
+      newState.list[action.spot.id] = action.spot;
       return newState;
     }
     case DELETE_SPOT: {
       const newState = { ...state };
-      delete newState[action.spot.id];
+      delete newState.list[action.spot.id];
       return newState;
     }
     default:

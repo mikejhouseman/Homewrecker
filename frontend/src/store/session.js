@@ -60,7 +60,7 @@ export const logout = () => async (dispatch) => {
     method: 'DELETE',
   });
   dispatch(removeUser());
-  return response;
+  return response;  
 };
 
 const initialState = { user: null };

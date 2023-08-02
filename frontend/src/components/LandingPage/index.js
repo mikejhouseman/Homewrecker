@@ -1,14 +1,17 @@
 // frontend/src/components/LandingPage/LandingPage.js
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getSpots } from '../../store/spots';
+import { restoreUser } from '../../store/session';
 import './LandingPage.css';
 import Navigation from '../Navigation';
 import ProfileButton from '../Navigation/ProfileButton';
 import AddSpotModal from '../AddSpotModal';
 import homewreckerLogo from './homewreckerLogo.png';
 import SpotModal from '../SpotModal';
+import * as spotActions from '../../store/spots';
 
 const LandingPage = () => {
   const dispatch = useDispatch();
@@ -18,25 +21,13 @@ const LandingPage = () => {
   const [selectedSpot, setSelectedSpot] = useState(null);
 
   useEffect(() => {
-    dispatch(getSpots());
+    dispatch(spotActions.getSpots())
   }, [dispatch]);
 
   useEffect(() => {
-    const fetchAvgRatings = async () => {
-      try {
-        for (const spotId in spots) {
-          const response = await fetch(`/api/spots/${spotId}`);
-          if (response.ok) {
-            const spotData = await response.json();
-            spots[spotId].avgRating = spotData.avgStarRating || null;
-          }
-        }
-      } catch (error) {
-        console.error('Error fetching average ratings', error);
-      }
-    };
-    fetchAvgRatings();
-  }, [spots]);
+    dispatch(restoreUser());
+    dispatch(getSpots());
+  }, [dispatch]);
 
   const toggleAddSpotModal = () => {
     setShowAddSpotModal(prevState => !prevState);
@@ -81,13 +72,13 @@ const LandingPage = () => {
               </li>
             ))}
           </ul>
-          <button onClick={toggleAddSpotModal}>Add Spot</button>
+          <button onClick={toggleAddSpotModal}>Create a New Spot</button>
           {showAddSpotModal && <AddSpotModal />}
         </div>
       </div>
       {sessionUser && <ProfileButton key={sessionUser.id} />}
       {selectedSpot && (
-        <SpotModal spot={selectedSpot} onClose={handleCloseSpotModal} />
+        <SpotModal spot={selectedSpot} user={sessionUser} onClose={handleCloseSpotModal} />
       )}
     </div>
   );
