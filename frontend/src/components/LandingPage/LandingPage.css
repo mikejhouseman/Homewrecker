@@ -1,13 +1,12 @@
-
 /* frontend/src/components/LandingPage/LandingPage.css */
-.home-page {
+.landing-page {
   max-width: 1600px;
   margin: 0 auto;
   padding: 20px;
   background-color: rgb(172, 172, 172);
 }
 
-.home-page__header {
+.landing-page__header {
   display: flex;
   align-items: center;
   padding: 10px;
@@ -20,12 +19,12 @@
   margin-right: 10px;
 }
 
-.home-page__content {
+.landing-page__content {
   margin-top: 20px;
   overflow: auto;
 }
 
-.home-page__content__spots h2 {
+.landing-page__content__spots h2 {
   font-size: 24px;
   margin-bottom: 10px;
 }
@@ -56,6 +55,7 @@
   display: block;
   text-decoration: none;
   color: #007bff;
+  position: relative;
 }
 
 .spot-image {
@@ -77,7 +77,7 @@
 }
 
 /* Tooltip */
-.spot-tile:hover .spot-link::before {
+.spot-link::before {
   content: attr(data-tooltip);
   position: absolute;
   bottom: -25px;
@@ -94,7 +94,7 @@
   transition: opacity 0.2s ease;
 }
 
-.spot-tile:hover .spot-link:hover::before {
+.spot-link:hover::before {
   opacity: 1;
 }
 
