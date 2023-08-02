@@ -1,3 +1,4 @@
+// backend/routes.api/session.js
 const express = require('express');
 const { Op } = require('sequelize');
 const bcrypt = require('bcryptjs');
@@ -16,7 +17,7 @@ const validateLogin = [
     .withMessage('Please provide a password.'),
   handleValidationErrors
 ];
-// backend/routes/api/session.js
+
 // 5 Log in
 router.post('/', validateLogin, async (req, res, next) => {
     const { credential, password } = req.body;
