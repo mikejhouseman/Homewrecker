@@ -1,4 +1,4 @@
-// backend/routes.api/session.js
+// backend/routes/api/session.js
 const express = require('express');
 const { Op } = require('sequelize');
 const bcrypt = require('bcryptjs');
@@ -38,10 +38,10 @@ router.post('/', validateLogin, async (req, res, next) => {
     }
     const safeUser = {
       id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
       email: user.email,
       username: user.username,
-      firstName: user.firstName,
-      lastName: user.lastName
     };
     await setTokenCookie(res, safeUser);
     return res.json({
@@ -52,6 +52,8 @@ router.post('/', validateLogin, async (req, res, next) => {
 
 // 04 Get current user
 router.get('/', async (req, res) => {
+  console.log(req.body);
+  console.log(req.user);
   if(req.user){
     const userId = req.user.id;
     const user = await User.findOne({
@@ -74,20 +76,19 @@ router.delete('/', (_req, res) => {
 );
 
 // Restore session user
-router.get(
-  '/',
-  (req, res) => {
-    const { user } = req;
-    if (user) {
-      const safeUser = {
-        id: user.id,
-        email: user.email,
-        username: user.username,
-      };
-      return res.json({
-        user: safeUser
-      });
-    } else return res.json({ user: null });
+router.get('/', (req, res) => {
+  if (req.user) {
+    const safeUser = {
+      id: req.user.id,
+      email: req.user.email,
+      username: req.user.username,
+    };
+    return res.json({
+      user: safeUser
+    });
+  } else {
+    return res.json({ user: null });
   }
-);
+});
+
 module.exports = router;

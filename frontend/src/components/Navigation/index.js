@@ -3,17 +3,54 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-import SignupFormModal from '../SignupFormModal';
+import OpenModalButton from '../OpenModalButton';
+import LoginFormModal from '../LoginFormModal';
+import * as sessionActions from '../../store/session';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
-  const sessionUser = useSelector(state => state.session.user);
+  const sessionUser = useSelector((state) => state.session.user);
+  // const dispatch = useDispatch();
 
-  const [showSignupModal, setShowSignupModal] = useState(false);
+  // const logout = (e) => {
+  //   e.preventDefault();
+  //   dispatch(sessionActions.logout());
+  // };
 
-  const handleSignup = () => {
-    setShowSignupModal(true);
-  };
+  // let sessionLinks;
+  // if (sessionUser) {
+  //   sessionLinks = (
+  //     <div>
+  //       <ProfileButton user={sessionUser} />
+  //       <button onClick={logout}>Log Out</button>
+  //     </div>
+  //   );
+  // } else {
+  //   sessionLinks = (
+  //     <li>
+  //       <NavLink to="/login">Log In</NavLink>
+  //       <NavLink to="/signup">Sign Up</NavLink>
+  //     </li>
+  //   );
+  // }
+  let sessionLinks;
+  if (sessionUser) {
+    sessionLinks = (
+      <li>
+        <ProfileButton user={sessionUser} />
+      </li>
+    );
+  } else {
+    sessionLinks = (
+      <li>
+        <OpenModalButton
+          buttonText="Log In"
+          modalComponent={<LoginFormModal />}
+        />
+        <NavLink to="/signup">Sign Up</NavLink>
+      </li>
+    );
+  }
 
   return (
     <nav>

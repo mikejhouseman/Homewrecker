@@ -1,10 +1,11 @@
 // frontend/src/index.js
 import React from 'react';
-import './index.css';
-// import ReactDom from 'react-dom';
-import { Provider as ReduxProvider } from 'react-redux';
+import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client'; // Import createRoot from 'react-dom/client' for React 18
 import { BrowserRouter } from 'react-router-dom';
-import { ModalProvider, Modal } from './context/Modal';
+import { Provider as ReduxProvider } from 'react-redux';
+import './index.css';
+import { ModalProvider, Modal } from "./context/Modal";
 import App from './App';
 
 import { createRoot } from 'react-dom/client'; // Import createRoot from 'react-dom/client' for React 18
@@ -12,6 +13,7 @@ import { createRoot } from 'react-dom/client'; // Import createRoot from 'react-
 import configureStore from './store';
 import { restoreCSRF, csrfFetch } from './store/csrf';
 import * as sessionActions from './store/session';
+
 
 const store = configureStore();
 

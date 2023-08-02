@@ -37,7 +37,7 @@ export const getSpots = () => async (dispatch) => {
       throw new Error('Failed to fetch spots from the server.');
     }
     const { Spots } = await response.json();
-    await dispatch(loadSpots(Spots)); 
+    await dispatch(loadSpots(Spots));
   } catch (error) {
     console.error('Error fetching spots:', error);
   }
@@ -115,8 +115,8 @@ const initialState = {
 };
 
 
-const spotsReducer = (state = initialState, action) => {
-  switch (action.type) {
+const spotsReducer = (state = {}, action) => {
+  switch (action.type && action.spots !== null) {
     case LOAD_SPOTS: {
       const allSpots = { ...state };
       action.spots.forEach((spot) => {
